@@ -25,16 +25,10 @@ const $d = document,
 
              //$marcarMesasOcupadas.data.id == mesasOcupadas
              $marcarMesasOcupadas.forEach(el => {
-                console.log(el.dataset.mesa)
                 if (mesasOcupadas.includes(el.dataset.mesa)) {
                     el.classList.replace("libre", "ocupada");
                 }
              });
-                
-             
-
-          
-            
        
 
         console.log(mesasOcupadas)
@@ -83,38 +77,43 @@ let ubicacion = []
 $mesas.addEventListener("click",e=>{
     let $radioSocio = $d.querySelector("input[type=radio]:checked").value
     let $mesa = e.target.dataset.mesa
-    if ($mesa.classList.contains("ocupada")) {
-        console.log("hola");
-      }
-    let $mesaEscogida = $d.querySelector(`.mesa[data-mesa='${$mesa}']`)
-    console.log($mesa)
+    let mesa = e.target
 
-    $checkbox = $d.getElementById(`${$mesa}`)
-    if($checkbox.checked){
-        $checkbox.checked = false
-        $mesaEscogida.classList.replace("escogida", "libre");
-        cont --
-        mesasEscogidas.splice(mesasEscogidas.indexOf($mesa),1)
-        deleteUbicacionMesas()
-    }else{
-        $checkbox.checked = true
-        $mesaEscogida.classList.replace("libre", "escogida");
-        cont ++
-        mesasEscogidas.push($mesa)
-        addUbicacionMesas($mesa)
-    }
-    if($radioSocio== "SI"){
-        $precioSpan.innerHTML = cont*20
-        $precio.value = cont*20
-    }if($radioSocio== "NO"){
-        $precioSpan.innerHTML = cont*25
-        $precio.value = cont*25
-    }
-console.log(cont)
-    $numeMesasSpan.innerHTML = parseInt(cont)
-    $numeMesas.value = parseInt(cont) 
-    $mesasEscogidSpan.innerHTML = mesasEscogidas.sort().join(",")
-    $mesasEscogidas.value = mesasEscogidas.sort().join(",")
-    $zonaSpan.innerHTML = ubicacion.sort().join(",")
-    $zona.value = ubicacion.sort().join(",")  
+
+    if (!mesa.classList.contains("ocupada")) {
+
+        let $mesaEscogida = $d.querySelector(`.mesa[data-mesa='${$mesa}']`)
+        console.log($mesa)
+    
+        $checkbox = $d.getElementById(`${$mesa}`)
+        if($checkbox.checked){
+            $checkbox.checked = false
+            $mesaEscogida.classList.replace("escogida", "libre");
+            cont --
+            mesasEscogidas.splice(mesasEscogidas.indexOf($mesa),1)
+            deleteUbicacionMesas()
+        }else{
+            $checkbox.checked = true
+            $mesaEscogida.classList.replace("libre", "escogida");
+            cont ++
+            mesasEscogidas.push($mesa)
+            addUbicacionMesas($mesa)
+        }
+        if($radioSocio== "SI"){
+            $precioSpan.innerHTML = cont*20
+            $precio.value = cont*20
+        }if($radioSocio== "NO"){
+            $precioSpan.innerHTML = cont*25
+            $precio.value = cont*25
+        }
+    console.log(cont)
+        $numeMesasSpan.innerHTML = parseInt(cont)
+        $numeMesas.value = parseInt(cont) 
+        $mesasEscogidSpan.innerHTML = mesasEscogidas.sort().join(",")
+        $mesasEscogidas.value = mesasEscogidas.sort().join(",")
+        $zonaSpan.innerHTML = ubicacion.sort().join(",")
+        $zona.value = ubicacion.sort().join(",")  
+      } 
+
+
 })

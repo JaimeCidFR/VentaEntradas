@@ -99,7 +99,9 @@ public static function eliminarReserva($numeroReserva){
         
         $pdoStmt = $conexion->prepare("DELETE FROM reservas WHERE numReserva like ?");
         $pdoStmt->bindParam(1, $numeroReserva); 
-        $pdoStmt->execute(); 
+        if($pdoStmt->execute()){
+            eliminacionRealizada();
+        } 
     
     } catch (PDOException $e) {
         die ("Houbo un erro en eliminarReserva". $e->getMessage());
@@ -150,4 +152,65 @@ public static function mesasOcupadas(){
         die ("Houbo un erro en añadirReserva". $e->getMessage());
     }
 }
+
+/* ***********************************FUNCION MOSTRAR E ELIINAR RESERVA************************************/
+public static function buscaReservaPorNumReserva($numReserva){
+    $conexion = new Conexion();
+    try {
+        
+        $pdoStmt = $conexion->prepare("SELECT numReserva, nomeCompleto,pena,email,telefono, numeroMesas FROM reservas WHERE numReserva like ?");
+        $pdoStmt->bindParam(1, $numReserva); 
+        $pdoStmt->execute(); 
+    
+    } catch (PDOException $e) {
+        die ("Houbo un erro en buscaReservaPorNumReserva". $e->getMessage());
+    }
+    return $pdoStmt; //DEVOLVEMOS TODAS AS FILAS nun PDOStatement
+}
+
+public static function buscaReservaPorNomeCompleto($nomeCompleto){
+    $conexion = new Conexion();
+    $nomeBuscar = "%".$nomeCompleto."%";
+    try {
+        
+        $pdoStmt = $conexion->prepare("SELECT numReserva, nomeCompleto,pena,email,telefono, numeroMesas FROM reservas WHERE nomeCompleto like ?");
+        $pdoStmt->bindParam(1, $nomeBuscar); 
+        $pdoStmt->execute(); 
+    
+    } catch (PDOException $e) {
+        die ("Houbo un erro en buscaReservaPorNomeCompleto". $e->getMessage());
+    }
+    return $pdoStmt; //DEVOLVEMOS TODAS AS FILAS nun PDOStatement
+}
+public static function buscaReservaPorNomePena($nomePena){
+    $conexion = new Conexion();
+    $nomeBuscar = "%".$nomePena."%";
+    try {
+        
+        $pdoStmt = $conexion->prepare("SELECT numReserva, nomeCompleto,pena,email,telefono, numeroMesas FROM reservas WHERE pena like ?");
+        $pdoStmt->bindParam(1, $nomeBuscar); 
+        $pdoStmt->execute(); 
+    
+    } catch (PDOException $e) {
+        die ("Houbo un erro en buscaReservaPorNomePena". $e->getMessage());
+    }
+    return $pdoStmt; //DEVOLVEMOS TODAS AS FILAS nun PDOStatement
+}
+public static function buscaReservaPorEmail($email){
+    $conexion = new Conexion();
+    try {
+        
+        $pdoStmt = $conexion->prepare("SELECT numReserva, nomeCompleto,pena,email,telefono, numeroMesas FROM reservas WHERE email like ?");
+        $pdoStmt->bindParam(1, $email); 
+        $pdoStmt->execute(); 
+    
+    } catch (PDOException $e) {
+        die ("Houbo un erro en buscaReservaPorNomePena". $e->getMessage());
+    }
+    return $pdoStmt; //DEVOLVEMOS TODAS AS FILAS nun PDOStatement
+}
+
+
+/* *******************FUNCION ELIMINAR RESERVA************** */
+
 }

@@ -140,7 +140,6 @@ function mapaMesas(){
               />
             </form>
           </div>
-          
           <div class="mesa m12 libre" data-mesa="12">
             12
             <form action="" method="post">
@@ -407,7 +406,7 @@ function formulariosBusquedaReservas(){
         <input type="radio" name="socio" id="socioSi" value="SI" />
         <label for="socio">NO</label>
         <input type="radio" name="socio" id="socioNo" value="NO" checked/>
-        <input type="hidden" name="idSocio" class="idSocio" />
+        <input type="hidden" name="idSocio" class="idSocio"/>
         </fieldset>
       <fieldset>
         <legend>UBICACION</legend>
@@ -436,6 +435,8 @@ function formulariosBusquedaReservas(){
       </fieldset>
 
       <input type="submit" name="reservar" value="Reservar" />
+
+      
     </form>
   </fieldset>
     ';
@@ -455,7 +456,7 @@ function mostrarSocios($resultado){
     
     echo "<tr >
             <td class=socio".$key->numSocio.">".$key->numSocio."</td>
-            <td class=socio".$key->numSocio.">".$key->NomeCompleto."</td>
+            <td class=socio".$key->numSocio.">".$key->nomeCompleto."</td>
             <td class=socio".$key->numSocio.">".$key->telefono."</td>
             <td class=socio".$key->numSocio.">".$key->email."</td>
             <td><button id='pegar' data-id='".$key->numSocio."'>COPIAR</button></td>
@@ -463,10 +464,80 @@ function mostrarSocios($resultado){
   }  
   echo"</table>";
 }
+function formularioEliminarReserva(){
+  echo'
+  <fieldset> <!-- ELIMINAR RESERVA -->
+  <legend>ELIMINAR RESERVA</legend>
+  <form action="controladorEmpanada.php" method="get">
+  <p>Rellenar mínimo un campo</p>
+
+    <div>
+      <label for="numReserva">NUMERO RESERVA</label>
+      <input type="text" name="numReserva" />
+    </div>
+
+    <div>
+      <label for="nomePena">NOME PEÑA</label>
+      <input type="text" name="nomePena" />
+    </div>
+
+    <div>
+      <label for="nomePersoa">NOME DA PERSOA </label>
+      <input type="text" name="nomePersoa" />
+    </div>
+
+    <div>
+      <label for="email">EMAIL</label>
+      <input type="email" name="email" />
+    </div>
+
+    <input type="submit" id="buscarReserva" name="buscarReservaAEliminar" value="Buscar" />
+
+  </form>
+  </fieldset>
+  ';
+}
 
 function reservaRealizada(){
   echo"<h2>A RESERVA FOI REALIZADA CON ÉXITO</h2>
   
-      <a href='controladorEmpanada.php'>Volver</a>";
+  <form action='controladorEmpanada.php'>
+  <input type='submit' value='Volver'>
+</form>";
       
+}
+function eliminacionRealizada(){
+  echo"<h2>A RESERVA FOI ELIMINADA CON ÉXITO</h2>
+  
+      <form action='controladorEmpanada.php'>
+        <input type='submit' value='Volver'>
+      </form>
+      ";
+      
+}
+function mostrarReservas($resultado){
+  echo "<table>
+          <tr>
+            <th>Numero de Reserva</th>
+            <th>Nome da Peña</th>
+            <th>Nome Completo</th>
+            <th>Telefono</th>
+            <th>Email</th>
+            <th>Mesas</th>
+            <th>Copiar en el formulario</th>
+          </tr>
+  ";
+  foreach ($resultado as $key) {
+    
+    echo "<tr >
+            <td class=socio".$key->numReserva.">".$key->numReserva."</td>
+            <td class=socio".$key->numReserva.">".$key->pena."</td>
+            <td class=socio".$key->numReserva.">".$key->nomeCompleto."</td>
+            <td class=socio".$key->numReserva.">".$key->telefono."</td>
+            <td class=socio".$key->numReserva.">".$key->email."</td>
+            <td class=socio".$key->numReserva.">".$key->numeroMesas."</td>
+            <td><form action='controladorEmpanada.php' methos='get'><input type='submit' value='Eliminar'> <input type='hidden' name='numReservaEliminar' value='".$key->numReserva."'/></form></td>
+          </tr>";
+  }  
+  echo"</table>";
 }

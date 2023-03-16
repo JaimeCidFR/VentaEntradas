@@ -11,7 +11,7 @@ class SocioModelo extends Socio{
         $conexion = new Conexion();
         try {
             
-            $pdoStmt = $conexion->prepare("SELECT numSocio, NomeCompleto,email,telefono FROM socios WHERE email like ?");
+            $pdoStmt = $conexion->prepare("SELECT numSocio, nomeCompleto,email,telefono FROM socios WHERE email like ?");
             $pdoStmt->bindParam(1, $email); 
             $pdoStmt->execute(); 
         
@@ -26,7 +26,7 @@ class SocioModelo extends Socio{
         $nomeBuscar = "%".$nomeCompleto."%";
         try {
             
-            $pdoStmt = $conexion->prepare("SELECT numSocio, NomeCompleto,email,telefono FROM socios WHERE nomeCompleto like ?");
+            $pdoStmt = $conexion->prepare("SELECT numSocio, nomeCompleto,email,telefono FROM socios WHERE nomeCompleto like ?");
             $pdoStmt->bindParam(1, $nomeBuscar); 
             $pdoStmt->execute(); 
         
@@ -41,7 +41,7 @@ class SocioModelo extends Socio{
         $dniBuscar = $dni."%";
         try {
             
-            $pdoStmt = $conexion->prepare("SELECT numSocio, NomeCompleto,email,telefono FROM socios WHERE DNI like ?");
+            $pdoStmt = $conexion->prepare("SELECT numSocio, nomeCompleto,email,telefono FROM socios WHERE DNI like ?");
             $pdoStmt->bindParam(1, $dniBuscar); 
             $pdoStmt->execute(); 
         
@@ -55,7 +55,7 @@ public static function buscaPorNumSocio($numSocio){
     $conexion = new Conexion();
     try {
         
-        $pdoStmt = $conexion->prepare("SELECT numSocio, NomeCompleto,email,telefono FROM socios WHERE numSocio like ?");
+        $pdoStmt = $conexion->prepare("SELECT numSocio, nomeCompleto,email,telefono FROM socios WHERE numSocio like ?");
         $pdoStmt->bindParam(1, $numSocio); 
         $pdoStmt->execute(); 
     

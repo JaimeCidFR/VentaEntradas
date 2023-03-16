@@ -18,6 +18,8 @@ include_once('../vista/vistaEmpanada.php');
 mapaMesas();
 echo "<div>";
 busquedaSocio();
+/*CASOS DE BUSQUEDA DE SOCIOS PARA RESERVAR */
+
 if(isset($_GET['numSocio']) && $_GET['numSocio'] != ""){
     $numero = $_GET['numSocio'];
     $salida = SocioModelo::buscaPorNumSocio($numero);
@@ -51,12 +53,16 @@ if(isset($_GET['reservar'])){
     $telefono = $_GET['tlf'];
     $email = $_GET['email'];
     $pena = $_GET['pena'];
-    if($_GET['socio'] = "SI"){
+    if($_GET['socio'] == "SI"){
         $socio = 1;
-    }else{
+        $idSocio = $_GET['idSocio'];
+
+    }if($_GET['socio'] == "NO"){
         $socio = 0;
+        $idSocio = null;
     }
-    $idSocio = $_GET['idSocio'];
+   
+
     $ubicacion = $_GET['zona'];
     $observacions = $_GET['observacions'];
     $mesasEscogidas = $_GET['mesasEscogidas'];
@@ -65,6 +71,49 @@ if(isset($_GET['reservar'])){
 
     ReservaModelo::añadirReserva($pena, $nomeCompleto,$email,$telefono,$socio,$idSocio,$numeroMesas,$mesasEscogidas,$ubicacion,$observacions,$precio);
 }
+echo '
+    <form action="controladorEmpanada.php" method="post">
+        <input type="submit" name="buscadorReserva" value="Buscar Reserva" />
+    </form>
+    ';
+if(isset($_POST['buscadorReserva'])){
+    formularioEliminarReserva();
+}
+
+/*CASOS DE BUSQUEDA DE RESERVAS PARA ELIMINAR */
+if(isset($_GET['numReserva']) && $_GET['numReserva'] != ""){
+    $numero = $_GET['numReserva'];
+    $salida = ReservaModelo::buscaReservaPorNumReserva($numero);
+    $filasArray = $salida->fetchAll(PDO::FETCH_OBJ);
+    mostrarReservas($filasArray);
+
+}
+if(isset($_GET['nomePena']) && $_GET['nomePena'] != ""){
+    $numero = $_GET['nomePena'];
+    $salida = ReservaModelo::buscaReservaPorNomePena($numero);
+    $filasArray = $salida->fetchAll(PDO::FETCH_OBJ);
+    mostrarReservas($filasArray);
+
+}
+if(isset($_GET['nomePersoa']) && $_GET['nomePersoa'] != ""){
+    $numero = $_GET['nomePersoa'];
+    $salida = ReservaModelo::buscaReservaPorNomeCompleto($numero);
+    $filasArray = $salida->fetchAll(PDO::FETCH_OBJ);
+    mostrarReservas($filasArray);
+
+}
+if(isset($_GET['email']) && $_GET['email'] != ""){
+    $numero = $_GET['email'];
+    $salida = ReservaModelo::buscaReservaPorEmail($numero);
+    $filasArray = $salida->fetchAll(PDO::FETCH_OBJ);
+    mostrarReservas($filasArray);
+
+}
+
+if(isset($_GET['numReservaEliminar'])){
+    $numReservaEliminar = $_GET['numReservaEliminar'];
+    ReservaModelo::eliminarReserva($numReservaEliminar);
+} 
 echo "</div>";
 
 echo"
@@ -72,6 +121,7 @@ echo"
     ReservaModelo::mesasOcupadas();
 echo "</div>
     ";
+
 
     ?>
 </body>
