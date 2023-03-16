@@ -140,6 +140,7 @@ function mapaMesas(){
               />
             </form>
           </div>
+          
           <div class="mesa m12 libre" data-mesa="12">
             12
             <form action="" method="post">
