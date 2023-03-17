@@ -75,15 +75,15 @@ let cont = 0
 let mesasEscogidas = []
 let ubicacion = []
 $mesas.addEventListener("click",e=>{
+    e.preventDefault()
     let $radioSocio = $d.querySelector("input[type=radio]:checked").value
     let $mesa = e.target.dataset.mesa
     let mesa = e.target
 
-
     if (!mesa.classList.contains("ocupada")) {
 
         let $mesaEscogida = $d.querySelector(`.mesa[data-mesa='${$mesa}']`)
-        console.log($mesa)
+        console.log(mesa)
     
         $checkbox = $d.getElementById(`${$mesa}`)
         if($checkbox.checked){

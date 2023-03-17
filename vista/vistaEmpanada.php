@@ -1,12 +1,13 @@
 <?php
 include_once("../modelo/SocioModelo.php");
 include_once("../modelo/ReservaModelo.php");
-
+/* <img src="../img/mapaCarballeiraMesasZonas.jpg" /> */
 function mapaMesas(){
     echo'
     <div class="parent"><!-- mapa y mesas -->
       <div class="children">
         <img src="../img/planoCarballeiraMesas.jpg" />
+        
         <div class="users">
           <div class="mesa m1 libre" data-mesa="1">
             1

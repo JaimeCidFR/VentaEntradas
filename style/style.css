@@ -30,8 +30,13 @@ table,th,tr,td{
 
 }
 .children{
-  width: 2292px;
-  height: 1719px;
+  width: 2300px;
+  height: 1720px;
+
+  /* 
+   width: 2800px;
+  height: 2100px;
+  */
   position: absolute;
   border: 1px solid #000;
   background-color: green;
@@ -43,8 +48,13 @@ table,th,tr,td{
   align-content: center;
 }
 .children img{
-  width: 2292px;
-  height: 1719px;
+  width: 2300px;
+  height: 1720px;
+
+  /* 
+   width: 2800px;
+  height: 2100px; 
+  */
 }
 .mesa{
   position: absolute;
