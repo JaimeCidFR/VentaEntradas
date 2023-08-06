@@ -139,4 +139,3 @@ function onDrag(e) {
     $mesa.style.transform = `translate(${offsetX + mesaX}px, ${offsetY + mesaY}px)`;
   });
 } */
-

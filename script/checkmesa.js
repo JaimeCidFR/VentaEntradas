@@ -100,11 +100,18 @@ $mesas.addEventListener("click",e=>{
             addUbicacionMesas($mesa)
         }
         if($radioSocio== "SI"){
-            $precioSpan.innerHTML = cont*20
-            $precio.value = cont*20
+            if(mesasEscogidas.length>2){
+                $precioSpan.innerHTML = cont*25-10
+                $precio.value = cont*25-10
+            }else{
+                $precioSpan.innerHTML = cont*20
+                $precio.value = cont*20
+            }
+            
+
         }if($radioSocio== "NO"){
-            $precioSpan.innerHTML = cont*25
-            $precio.value = cont*25
+            $precioSpan.innerHTML = cont*35
+            $precio.value = cont*35
         }
     console.log(cont)
         $numeMesasSpan.innerHTML = parseInt(cont)

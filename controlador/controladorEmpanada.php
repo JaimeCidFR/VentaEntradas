@@ -15,8 +15,11 @@ include_once('../vista/vistaEmpanada.php');
 </head>
 <body>
     <?php
+echo "<div class='mapaBusqueda'>";
+ 
 mapaMesas();
-echo "<div>";
+
+
 busquedaSocio();
 /*CASOS DE BUSQUEDA DE SOCIOS PARA RESERVAR */
 
@@ -46,6 +49,9 @@ if(isset($_GET['email']) && $_GET['email'] != ""){
     $filasArray = $salida->fetchAll(PDO::FETCH_OBJ);
     mostrarSocios($filasArray);
 }
+echo "</div>";
+
+echo "<div class='formularios'>";
 
 formulariosBusquedaReservas();
 if(isset($_GET['reservar'])){
@@ -79,7 +85,32 @@ echo '
 if(isset($_POST['buscadorReserva'])){
     formularioEliminarReserva();
 }
+echo '
+    <form action="controladorEmpanada.php" method="post">
+        <input type="submit" name="addSocio" value="Engadir Socio" />
+    </form>
+    ';
+if(isset($_POST['addSocio'])){
+    addSocio();
+}
+if(isset($_GET['addSocioEnviar'])){
+    $NomeCompleto = $_GET['nomeCompletoAddSocio'];
+    $DNI = $_GET['dniAddSocio'];
+    $email = $_GET['emailAddSocio'];
+    $telefono = $_GET['telefonoAddSocio'];
+    $IBAN = $_GET['ibanAddSocio'];
+    $rua = $_GET['ruaAddSocio'];
+    $numeroCasa = $_GET['numeroAddSocio'];
+    $poboacion = $_GET['poboacionAddSocio'];
+    $dataAlta = $_GET['dataAltaAddSocio'];
+    if(isset($_GET['observaciónsAddSocio'])){
 
+        $observacións = $_GET['observacións'];
+    }else{
+        $observacións = "";
+    }
+    SocioModelo::addSocio($NomeCompleto,$DNI,$email,$telefono,$IBAN,$rua,$numeroCasa,$poboacion,$dataAlta,$observacións);
+} 
 /*CASOS DE BUSQUEDA DE RESERVAS PARA ELIMINAR */
 if(isset($_GET['numReserva']) && $_GET['numReserva'] != ""){
     $numero = $_GET['numReserva'];
@@ -120,10 +151,12 @@ echo"
     <div class='mesasOculto'>";
     ReservaModelo::mesasOcupadas();
 echo "</div>
+
     ";
 
 
     ?>
+
 </body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
