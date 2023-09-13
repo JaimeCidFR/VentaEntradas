@@ -34,8 +34,8 @@ const $d = document,
         console.log(mesasOcupadas)
 
 function addUbicacionMesas($mesa){
-    if($mesa>0 && $mesa<=14){
-        let zona=4
+    if($mesa>0 && $mesa<=79){
+        let zona=1
         if(ubicacion.includes(zona)){
             return ubicacion
         }else{
@@ -43,8 +43,28 @@ function addUbicacionMesas($mesa){
             return ubicacion
         }
     }
-    if($mesa>14 && $mesa<=28){
+    if($mesa>79 && $mesa<=158){
+        let zona=2
+        if(ubicacion.includes(zona)){
+            return ubicacion
+        }else{
+            ubicacion.push(zona)
+            return ubicacion
+        }
+        
+    }
+    if($mesa>158 && $mesa<=249){
         let zona=3
+        if(ubicacion.includes(zona)){
+            return ubicacion
+        }else{
+            ubicacion.push(zona)
+            return ubicacion
+        }
+        
+    }
+    if($mesa>249 && $mesa<=374){
+        let zona="carpa"
         if(ubicacion.includes(zona)){
             return ubicacion
         }else{
@@ -57,14 +77,25 @@ function addUbicacionMesas($mesa){
 }
 function deleteUbicacionMesas(){
 
-    let existeZona4 = mesasEscogidas.filter(e => e>0 && e<=14);
-    let existeZona3 = mesasEscogidas.filter(e => e>14 && e<=28);
+    let existeZona1 = mesasEscogidas.filter(e => e>0 && e<=79);
+    let existeZona2 = mesasEscogidas.filter(e => e>79 && e<=158);
+    let existeZona3 = mesasEscogidas.filter(e => e>158 && e<=249);
+    let existeZona4 = mesasEscogidas.filter(e => e>249 && e<=374);
 
-    if(existeZona4.length==0){
-        let zona=4
+    if(existeZona1.length==0){
+        let zona=0
         ubicacion.splice(ubicacion.indexOf(zona),1)
-    }if(existeZona3.length==0){
+    }
+    if(existeZona2.length==0){
+        let zona=2
+        ubicacion.splice(ubicacion.indexOf(zona),1)
+    }
+    if(existeZona4.length==0){
         let zona=3
+        ubicacion.splice(ubicacion.indexOf(zona),1)
+    }
+    if(existeZona3.length==0){
+        let zona="carpa"
         ubicacion.splice(ubicacion.indexOf(zona),1)
     }
     

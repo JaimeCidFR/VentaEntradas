@@ -10,7 +10,13 @@ function mapaMesas(){
         
         <div class="users">
 
-        <div class="mesa m1 libre" data-mesa="1">
+    <div class="mesa m0 libre" data-mesa="0">
+        0
+        <form action="" method="post"><input type="checkbox" name="mesaEscogida" id="0" data-mesa="0" hidden="hidden"></form>
+    </div>
+
+
+    <div class="mesa m1 libre" data-mesa="1">
         1
         <form action="" method="post"><input type="checkbox" name="mesaEscogida" id="1" data-mesa="1" hidden="hidden"></form>
     </div>
@@ -566,6 +572,10 @@ function mapaMesas(){
         139
         <form action="" method="post"><input type="checkbox" name="mesaEscogida" id="139" data-mesa="139" hidden="hidden"></form>
     </div>
+
+    
+
+
     <div class="mesa m140 libre" data-mesa="140">
         140
         <form action="" method="post"><input type="checkbox" name="mesaEscogida" id="140" data-mesa="140" hidden="hidden"></form>
@@ -1506,6 +1516,25 @@ function mapaMesas(){
         374
         <form action="" method="post"><input type="checkbox" name="mesaEscogida" id="374" data-mesa="374" hidden="hidden"></form>
     </div>
+
+    <div class="mesa m375 libre" data-mesa="375">
+        375
+        <form action="" method="post"><input type="checkbox" name="mesaEscogida" id="375" data-mesa="375" hidden="hidden"></form>
+    </div>
+
+    <div class="mesa m376 libre" data-mesa="376">
+        376
+        <form action="" method="post"><input type="checkbox" name="mesaEscogida" id="376" data-mesa="376" hidden="hidden"></form>
+    </div>
+
+    <div class="mesa m377 libre" data-mesa="377">
+        377
+        <form action="" method="post"><input type="checkbox" name="mesaEscogida" id="377" data-mesa="377" hidden="hidden"></form>
+    </div>
+    <div class="mesa m378 libre" data-mesa="378">
+        378
+        <form action="" method="post"><input type="checkbox" name="mesaEscogida" id="378" data-mesa="378" hidden="hidden"></form>
+    </div>
         </div>
       </div>
     </div>
@@ -1618,6 +1647,11 @@ function formulariosBusquedaReservas(){
         <label for="precio"></label>
         <input type="hidden" name="precio" class="precio" />
       </fieldset>
+      
+      <div>  
+        <label for="pagado">PAGADO</label>
+        <input type="text" name="pagado" id="pagado"/>
+    </div>
 
       <input type="submit" name="reservar" value="Reservar" />
 
@@ -1629,11 +1663,11 @@ function formulariosBusquedaReservas(){
 function mostrarSocios($resultado){
   echo "<table>
           <tr>
-            <th>Numero de Socio</th>
-            <th>Nome Completo</th>
-            <th>Telefono</th>
-            <th>Email</th>
-            <th>Copiar en el formulario</th>
+            <th>Nº SOCIO</th>
+            <th>NOME COMPLETO</th>
+            <th>TELEFONO</th>
+            <th>EMAIL</th>
+            <th>COPIAR EN EL FORMULARIO</th>
           </tr>
   ";
   foreach ($resultado as $key) {

@@ -74,8 +74,9 @@ if(isset($_GET['reservar'])){
     $mesasEscogidas = $_GET['mesasEscogidas'];
     $numeroMesas = $_GET['numeroMesas'];
     $precio = $_GET['precio'];
+    $pagado = $_GET['pagado'];
 
-    ReservaModelo::añadirReserva($pena, $nomeCompleto,$email,$telefono,$socio,$idSocio,$numeroMesas,$mesasEscogidas,$ubicacion,$observacions,$precio);
+    ReservaModelo::añadirReserva($pena, $nomeCompleto,$email,$telefono,$socio,$idSocio,$numeroMesas,$mesasEscogidas,$ubicacion,$observacions,$precio,$pagado);
 }
 echo '
     <form action="controladorEmpanada.php" method="post">

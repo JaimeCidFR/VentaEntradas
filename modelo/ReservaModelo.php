@@ -109,11 +109,11 @@ public static function eliminarReserva($numeroReserva){
     return $pdoStmt; //DEVOLVEMOS TODAS AS FILAS nun PDOStatement
 }
 /*------------------AÑADIR RESERVA----------------------------*/
-public static function añadirReserva($pena, $nomeCompleto,$email,$telefono,$socio,$idSocio,$numeroMesas,$mesas,$ubicacion,$observacions,$precio){
+public static function añadirReserva($pena, $nomeCompleto,$email,$telefono,$socio,$idSocio,$numeroMesas,$mesas,$ubicacion,$observacions,$precio,$pagado){
     $conexion = new Conexion();
     try {
         
-        $pdoStmt = $conexion->prepare("INSERT INTO reservas(pena, nomeCompleto, email, telefono, socio, numSocio, mesas,numeroMesas, ubicacion,observacions, precio) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+        $pdoStmt = $conexion->prepare("INSERT INTO reservas(pena, nomeCompleto, email, telefono, socio, numSocio, mesas,numeroMesas, ubicacion,observacions, precio,pagado) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
         $pdoStmt->bindParam(1, $pena); 
         $pdoStmt->bindParam(2, $nomeCompleto); 
         $pdoStmt->bindParam(3, $email); 
@@ -125,6 +125,7 @@ public static function añadirReserva($pena, $nomeCompleto,$email,$telefono,$soc
         $pdoStmt->bindParam(9, $ubicacion); 
         $pdoStmt->bindParam(10, $observacions); 
         $pdoStmt->bindParam(11, $precio); 
+        $pdoStmt->bindParam(12, $pagado); 
         
         if($pdoStmt->execute()){
             reservaRealizada();

@@ -36,13 +36,13 @@ const $doc = document,
         $plano.style.top="-733px"; */
         if (e.deltaY > 0) {
           console.log("acercar");
-          zoom -= 0.3;
+          zoom -= 0.1;
           $plano.style.zoom = `${zoom}`;
           //$plano.style.transform = `scale(${zoom})`
           console.log(zoom);
         } else {
           console.log("alejar");
-          zoom += 0.3;
+          zoom += 0.1;
           $plano.style.zoom = `${zoom}`;
           //$plano.style.transform = `scale(${zoom})`
           console.log(zoom);
